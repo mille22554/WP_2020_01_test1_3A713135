@@ -75,6 +75,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox1.Text) * 10;
                 label1.Text = "價格:10\r\n持有數:" + c[0];
                 f1.labelchange();
+                textBox1.Text="";
                 if (c[0] == 0) pictureBox1.Image = null;
             }
         }
@@ -89,6 +90,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox2.Text) * 30;
                 label2.Text = "價格:30\r\n持有數:" + c[1];
                 f1.labelchange();
+                textBox2.Text="";
                 if (c[1] == 0) pictureBox2.Image = null;
             }
         }
@@ -104,6 +106,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox3.Text) * 80;
                 label3.Text = "價格:80\r\n持有數:" + c[2];
                 f1.labelchange();
+                textBox3.Text="";
                 if (c[2] == 0) pictureBox3.Image = null;
             }
         }
@@ -119,6 +122,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox4.Text) * 400;
                 label4.Text = "價格:400\r\n持有數:" + c[3];
                 f1.labelchange();
+                textBox4.Text="";
                 if (c[3] == 0) pictureBox4.Image = null;
             }
         }
@@ -134,6 +138,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox5.Text) * 10;
                 label5.Text = "價格:10\r\n持有數:" + c[4];
                 f1.labelchange();
+                textBox5.Text="";
                 if (c[4] == 0) pictureBox5.Image = null;
             }
         }
@@ -148,6 +153,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox6.Text) * 30;
                 label6.Text = "價格:30\r\n持有數:" + c[5];
                 f1.labelchange();
+                textBox6.Text="";
                 if (c[5] == 0) pictureBox6.Image = null;
             }
         }
@@ -162,6 +168,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox7.Text) * 80;
                 label7.Text = "價格:80\r\n持有數:" + c[6];
                 f1.labelchange();
+                textBox7.Text="";
                 if (c[6] == 0) pictureBox7.Image = null;
             }
         }
@@ -176,6 +183,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox8.Text) * 400;
                 label8.Text = "價格:400\r\n持有數:" + c[7];
                 f1.labelchange();
+                textBox8.Text="";
                 if (c[7] == 0) pictureBox8.Image = null;
             }
         }
@@ -190,6 +198,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox9.Text) * 10;
                 label9.Text = "價格:10\r\n持有數:" + c[8];
                 f1.labelchange();
+                textBox9.Text="";
                 if (c[8] == 0) pictureBox9.Image = null;
             }
         }
@@ -204,6 +213,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox10.Text) * 30;
                 label10.Text = "價格:30\r\n持有數:" + c[9];
                 f1.labelchange();
+                textBox10.Text="";
                 if (c[9] == 0) pictureBox10.Image = null;
             }
         }
@@ -218,6 +228,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox11.Text) * 10;
                 label11.Text = "價格:80\r\n持有數:" + c[10];
                 f1.labelchange();
+                textBox11.Text="";
                 if (c[10] == 0) pictureBox11.Image = null;
             }
         }
@@ -232,6 +243,7 @@ namespace WP_2020_01_test1_3A713135
                 f1.cash += Convert.ToInt32(textBox12.Text) * 10;
                 label12.Text = "價格:400\r\n持有數:" + c[11];
                 f1.labelchange();
+                textBox12.Text="";
                 if (c[11] == 0) pictureBox12.Image = null;
             }
         }
