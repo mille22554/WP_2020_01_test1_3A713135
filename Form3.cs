@@ -35,29 +35,29 @@ namespace WP_2020_01_test1_3A713135
             label11.Text = "價格:80\r\n持有數:" + c[10];
             label12.Text = "價格:400\r\n持有數:" + c[11];
             if (c[0] == 0) pictureBox1.Image = null;
-            else pictureBox1.Image = f1.rm.GetObject("1") as Image;
+            else pictureBox1.Image = f1.pics[0];
             if (c[1] == 0) pictureBox2.Image = null;
-            else pictureBox2.Image = f1.rm.GetObject("2") as Image;
+            else pictureBox2.Image = f1.pics[1];
             if (c[2] == 0) pictureBox3.Image = null;
-            else pictureBox3.Image = f1.rm.GetObject("3") as Image;
+            else pictureBox3.Image = f1.pics[2];
             if (c[3] == 0) pictureBox4.Image = null;
-            else pictureBox4.Image = f1.rm.GetObject("4") as Image;
+            else pictureBox4.Image = f1.pics[3];
             if (c[4] == 0) pictureBox5.Image = null;
-            else pictureBox5.Image = f1.rm.GetObject("5") as Image;
+            else pictureBox5.Image = f1.pics[4];
             if (c[5] == 0) pictureBox6.Image = null;
-            else pictureBox6.Image = f1.rm.GetObject("6") as Image;
+            else pictureBox6.Image = f1.pics[5];
             if (c[6] == 0) pictureBox7.Image = null;
-            else pictureBox7.Image = f1.rm.GetObject("7") as Image;
+            else pictureBox7.Image = f1.pics[6];
             if (c[7] == 0) pictureBox8.Image = null;
-            else pictureBox8.Image = f1.rm.GetObject("8") as Image;
+            else pictureBox8.Image = f1.pics[7];
             if (c[8] == 0) pictureBox9.Image = null;
-            else pictureBox9.Image = f1.rm.GetObject("9") as Image;
+            else pictureBox9.Image = f1.pics[8];
             if (c[9] == 0) pictureBox10.Image = null;
-            else pictureBox10.Image = f1.rm.GetObject("10") as Image;
+            else pictureBox10.Image = f1.pics[9];
             if (c[10] == 0) pictureBox11.Image = null;
-            else pictureBox11.Image = f1.rm.GetObject("11") as Image;
+            else pictureBox11.Image = f1.pics[10];
             if (c[11] == 0) pictureBox12.Image = null;
-            else pictureBox12.Image = f1.rm.GetObject("12") as Image;
+            else pictureBox12.Image = f1.pics[11];
         }
         public void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {

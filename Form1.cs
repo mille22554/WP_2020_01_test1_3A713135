@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Resources;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace WP_2020_01_test1_3A713135
 {
@@ -16,9 +14,52 @@ namespace WP_2020_01_test1_3A713135
         public int cash = 0,pic=0;
         Random card = new Random();
         gacya gacya = new gacya();
-        public ResourceManager rm = new ResourceManager(typeof(WP_2020_01_test1_3A713135.Properties.Resources));
         Form2 f2;
         Form3 f3;
+        public class resp{public List<img> data { get; set; }}
+        public class img{public string link { get; set; }}
+        public resp Getimages()
+        {
+            resp result = null;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.imgur.com/3/album/UPzWNt1/images");
+                WebHeaderCollection webHeaderCollection = request.Headers;
+                webHeaderCollection.Add("Authorization", "Client-ID 9f758a622e4f4ff");
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream receiveStream = response.GetResponseStream();
+                StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+                string json = readStream.ReadToEnd();
+
+                result = JsonConvert.DeserializeObject<resp>(json);
+
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.ToString());
+                throw;
+            }
+            return result;
+        }
+        public Image getimagefromurl(string url)
+        {
+            Image result = null;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream receivestream = response.GetResponseStream();
+                result = System.Drawing.Image.FromStream(receivestream);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.ToString());
+                throw;
+            }
+            return result;
+        }
+        public Image[] pics = new Image[12];
         public void cashchange(int change,int wol)
         {
             if (wol == 0) cash = cash- change;
@@ -42,6 +83,20 @@ namespace WP_2020_01_test1_3A713135
             InitializeComponent();
             f2 = new Form2();
             f3 = new Form3();
+            var m =Getimages();
+            if (m == null) return;
+            pics[0] = getimagefromurl(m.data[9].link);
+            pics[1] = getimagefromurl(m.data[2].link);
+            pics[2] = getimagefromurl(m.data[4].link);
+            pics[3] = getimagefromurl(m.data[5].link);
+            pics[4] = getimagefromurl(m.data[6].link);
+            pics[5] = getimagefromurl(m.data[8].link);
+            pics[6] = getimagefromurl(m.data[1].link);
+            pics[7] = getimagefromurl(m.data[11].link);
+            pics[8] = getimagefromurl(m.data[7].link);
+            pics[9] = getimagefromurl(m.data[3].link);
+            pics[10] = getimagefromurl(m.data[10].link);
+            pics[11] = getimagefromurl(m.data[0].link);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,6 +109,8 @@ namespace WP_2020_01_test1_3A713135
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var m = Getimages();
+            if (m == null) return;
             if (cash < 30) MessageBox.Show("你的錢不夠抽卡。", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -78,8 +135,8 @@ namespace WP_2020_01_test1_3A713135
                 pictureBox11.Image = null;
                 cash = cash - 30;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox1.Image= rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic-1]++;
+                pictureBox1.Image= pics[pic];
+                f3.c[pic]++;
                 if (cash < 1 && f3.c[0] < 1 && f3.c[1] < 1 && f3.c[2] < 1 && f3.c[3] < 1 
                     && f3.c[4] < 1 && f3.c[5] < 1 && f3.c[6] < 1 && f3.c[7] < 1 
                     && f3.c[8] < 1 && f3.c[9] < 1 && f3.c[10] < 1 && f3.c[11] < 1)
@@ -106,43 +163,45 @@ namespace WP_2020_01_test1_3A713135
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var m = Getimages();
+            if (m == null) return;
             if (cash < 300) MessageBox.Show("你的錢不夠抽卡。", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 cash = cash - 300;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox1.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic-1]++;
+                pictureBox1.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox2.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox2.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox3.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox3.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox4.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox4.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox5.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox5.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox6.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox6.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox7.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox7.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox8.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox8.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox9.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox9.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox10.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox10.Image = pics[pic];
+                f3.c[pic]++;
                 pic = gacya.Gacya(card.Next(1, 101));
-                pictureBox11.Image = rm.GetObject(pic.ToString()) as Image;
-                f3.c[pic - 1]++;
+                pictureBox11.Image = pics[pic];
+                f3.c[pic]++;
             }
             if (cash < 1 && f3.c[0] < 1 && f3.c[1] < 1 && f3.c[2] < 1 && f3.c[3] < 1 && f3.c[4] < 1 && f3.c[5] < 1 && f3.c[6] < 1 && f3.c[7] < 1 && f3.c[8] < 1 && f3.c[9] < 1 && f3.c[10] < 1 && f3.c[11] < 1)
             {

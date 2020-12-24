@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -85,6 +88,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,42 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\大賢者.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\小屁孩.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\小混混.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\台中人.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\見習法師.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\見習劍士.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\很快的人.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\科技.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\浪人.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\遊俠.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\騙子超能力者.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="卡片\魔導師.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
