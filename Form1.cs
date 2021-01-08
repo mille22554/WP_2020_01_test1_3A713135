@@ -12,18 +12,20 @@ namespace WP_2020_01_test1_3A713135
     public partial class Form1 : Form
     {
         public int cash = 0,pic=0;
+        public string url ="https://api.imgur.com/3/album/UPzWNt1/images";
         Random card = new Random();
         gacya gacya = new gacya();
         Form2 f2;
         Form3 f3;
+        Form4 f4;
         public class resp{public List<img> data { get; set; }}
         public class img{public string link { get; set; }}
-        public resp Getimages()
+        public resp Getimages(string url)
         {
             resp result = null;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.imgur.com/3/album/UPzWNt1/images");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 WebHeaderCollection webHeaderCollection = request.Headers;
                 webHeaderCollection.Add("Authorization", "Client-ID 9f758a622e4f4ff");
 
@@ -59,7 +61,7 @@ namespace WP_2020_01_test1_3A713135
             }
             return result;
         }
-        public Image[] pics = new Image[12];
+        public Image[] pics = new Image[12],top=new Image[2];
         public void cashchange(int change,int wol)
         {
             if (wol == 0) cash = cash- change;
@@ -78,25 +80,27 @@ namespace WP_2020_01_test1_3A713135
         {
             label1.Text = "剩餘金錢:" + cash;
         }
+        public void deckselect(int x)
+        {
+            if (x == 2) url = "https://api.imgur.com/3/album/x0fM3MP/images";
+        }
         public Form1()
         {
             InitializeComponent();
             f2 = new Form2();
             f3 = new Form3();
-            var m =Getimages();
+            f4 = new Form4();
+            var m =Getimages("https://api.imgur.com/3/album/UPzWNt1/images");
+            top[0] = getimagefromurl(m.data[0].link);
+            m = Getimages("https://api.imgur.com/3/album/x0fM3MP/images");
+            top[1] = getimagefromurl(m.data[0].link);
+            f4.ShowDialog(this);
+            m = Getimages(url);
             if (m == null) return;
-            pics[0] = getimagefromurl(m.data[9].link);
-            pics[1] = getimagefromurl(m.data[2].link);
-            pics[2] = getimagefromurl(m.data[4].link);
-            pics[3] = getimagefromurl(m.data[5].link);
-            pics[4] = getimagefromurl(m.data[6].link);
-            pics[5] = getimagefromurl(m.data[8].link);
-            pics[6] = getimagefromurl(m.data[1].link);
-            pics[7] = getimagefromurl(m.data[11].link);
-            pics[8] = getimagefromurl(m.data[7].link);
-            pics[9] = getimagefromurl(m.data[3].link);
-            pics[10] = getimagefromurl(m.data[10].link);
-            pics[11] = getimagefromurl(m.data[0].link);
+            for (int i = 0; i < 12; i++)
+            {
+                pics[i] = getimagefromurl(m.data[i].link);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -109,7 +113,7 @@ namespace WP_2020_01_test1_3A713135
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var m = Getimages();
+            var m = Getimages(url);
             if (m == null) return;
             if (cash < 30) MessageBox.Show("你的錢不夠抽卡。", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
@@ -163,7 +167,7 @@ namespace WP_2020_01_test1_3A713135
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var m = Getimages();
+            var m = Getimages(url);
             if (m == null) return;
             if (cash < 300) MessageBox.Show("你的錢不夠抽卡。", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
